@@ -1,12 +1,15 @@
 library countries_world_map;
 
 export 'src/map.dart';
-export 'src/helper.dart';
+export 'src/helpers/map_attributes.dart';
 
 // Export continents
 // export 'data/maps/continents/africa.dart';
 
 // Export countries
+export 'data/maps/countries/afghanistan.dart';
+export 'data/maps/countries/albania.dart';
+export 'data/maps/countries/albania_old.dart';
 export 'data/maps/countries/argentina.dart';
 export 'data/maps/countries/austria.dart';
 export 'data/maps/countries/andorra.dart';
@@ -78,6 +81,8 @@ export 'data/maps/countries/kosovo.dart';
 export 'data/maps/countries/kyrgyzstan.dart';
 export 'data/maps/countries/laos.dart';
 export 'data/maps/countries/latvia.dart';
+export 'data/maps/countries/lebanon.dart';
+export 'data/maps/countries/libya.dart';
 export 'data/maps/countries/liechtenstein.dart';
 export 'data/maps/countries/lithuania.dart';
 export 'data/maps/countries/luxembourg.dart';
@@ -86,6 +91,7 @@ export 'data/maps/countries/mali.dart';
 export 'data/maps/countries/malta.dart';
 export 'data/maps/countries/mexico.dart';
 export 'data/maps/countries/moldova.dart';
+export 'data/maps/countries/mongolia.dart';
 export 'data/maps/countries/montenegro.dart';
 export 'data/maps/countries/morocco.dart';
 export 'data/maps/countries/mozambique.dart';

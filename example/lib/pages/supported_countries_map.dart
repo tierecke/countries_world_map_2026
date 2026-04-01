@@ -37,6 +37,8 @@ class _SupportedCountriesMapState extends State<SupportedCountriesMap> {
                     },
                     countryBorder: CountryBorder(color: Colors.white),
                     colors: SMapWorldColors(
+                      aL: Colors.green,
+                      aF: Colors.green,
                       eT: Colors.green,
                       aR: Colors.green,
                       aT: Colors.green,
@@ -373,6 +375,10 @@ class _CountryPageState extends State<CountryPage> {
 
   String getInstructions(String id) {
     switch (id) {
+      case 'al':
+        return SMapAlbania.instructions;
+      case 'af':
+        return SMapAfghanistan.instructions;
       case 'ar':
         return SMapArgentina.instructions;
 

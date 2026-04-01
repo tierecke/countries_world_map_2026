@@ -1,3 +1,4 @@
+import 'package:countries_world_map/src/helpers/map_instructions.dart';
 import 'package:flutter/material.dart';
 import '../components/canvas/touchy_canvas.dart';
 import '../countries_world_map.dart';
@@ -6,7 +7,7 @@ import '../countries_world_map.dart';
 /// Giving countries a different color based on a data set can help visualize data.
 
 class SimpleMapPainter extends CustomPainter {
-  final List<Map<String, dynamic>> instructions;
+  final List<Map<String, dynamic>> drawingInstructions;
 
   /// This Color is used for all the countries that have no custom color
   final Color defaultColor;
@@ -20,7 +21,7 @@ class SimpleMapPainter extends CustomPainter {
   final CountryBorder? countryBorder;
 
   const SimpleMapPainter({
-    required this.instructions,
+    required this.drawingInstructions,
     required this.defaultColor,
     this.colors,
     required this.context,
@@ -32,10 +33,22 @@ class SimpleMapPainter extends CustomPainter {
   void paint(Canvas c, Size s) {
     TouchyCanvas canvas = TouchyCanvas(context, c);
 
+    // Draw background Path
+    Path backgroundPath = Path();
+    backgroundPath.moveTo(0, 0);
+    backgroundPath.lineTo(s.width, 0);
+    backgroundPath.lineTo(s.width, s.height);
+    backgroundPath.lineTo(0, s.height);
+    canvas.drawPath(
+      backgroundPath,
+      Paint()..color = Colors.transparent,
+      onTapUp: (tabdetail) => callback("", "", tabdetail),
+    );
+
     // Get country paths from Json
     // List countryPaths = json.decode(jsonData);
     List<SimpleMapInstruction> countryPathList = <SimpleMapInstruction>[];
-    for (var path in instructions) {
+    for (var path in drawingInstructions) {
       countryPathList.add(SimpleMapInstruction.fromJson(path));
     }
 
@@ -84,43 +97,3 @@ class SimpleMapPainter extends CustomPainter {
   bool shouldRepaint(SimpleMapPainter oldDelegate) =>
       oldDelegate.colors != colors;
 }
-
-class SimpleMapInstruction {
-  /// uniqueID of the territory being drawn
-  String uniqueID;
-
-  /// Name of the territory being drawn
-  String name;
-
-  /// List of instructions to draw the territory
-  List<String> instructions;
-
-  SimpleMapInstruction(
-      {required this.uniqueID, required this.instructions, required this.name});
-
-  // To Json
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{
-      "\"n\"": "\"$name\"",
-      "\"u\"": "\"$uniqueID\"",
-      "\"i\"": instructions,
-    };
-    return data;
-  }
-
-  // From Json
-  factory SimpleMapInstruction.fromJson(Map<String, dynamic> json) {
-    List<String> paths = <String>[];
-
-    List jsonPaths = json['i'];
-
-    for (int i = 0; i < jsonPaths.length; i++) {
-      paths.add(jsonPaths[i]);
-    }
-
-    return SimpleMapInstruction(
-        uniqueID: json['u'], name: json['n'], instructions: paths);
-  }
-}
-
-
