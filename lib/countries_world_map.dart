@@ -98,6 +98,7 @@ export 'data/maps/countries/mozambique.dart';
 export 'data/maps/countries/myanmar.dart';
 export 'data/maps/countries/namibia.dart';
 export 'data/maps/countries/nepal.dart';
+export 'data/maps/countries/nepal_old.dart';
 export 'data/maps/countries/netherlands.dart';
 export 'data/maps/countries/new_zealand.dart';
 export 'data/maps/countries/nicaragua.dart';
